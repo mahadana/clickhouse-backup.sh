@@ -20,7 +20,7 @@ clickhouse-backup.sh -d dbname backup > dumpfile
 
 clickhouse-backup.sh -d dbname restore < dumpfile
 
-clickhouse --help
+clickhouse-backup.sh --help
 ```
 
 ## Caveats
