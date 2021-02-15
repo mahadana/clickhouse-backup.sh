@@ -2,7 +2,8 @@
 
 Backup / restore _small_ [ClickHouse](https://clickhouse.tech/) databases.
 
-For bigger databases, please see [clickhouse-backup](https://github.com/AlexAkulov/clickhouse-backup).
+For typical ClickHouse databases, please use
+[clickhouse-backup](https://github.com/AlexAkulov/clickhouse-backup).
 
 ## Install
 
@@ -21,3 +22,7 @@ clickhouse-backup.sh -d dbname restore < dumpfile
 
 clickhouse --help
 ```
+
+## Caveats
+
+This uses large amounts of `/tmp` space to backup / restore the database.

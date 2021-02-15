@@ -76,11 +76,10 @@ if [ "$COMMAND" = "backup" ]; then
 
   for table in $(cc -q "SHOW TABLES FROM $DATABASE"); do
     log "  table $table"
-    cc -d "$DATABASE" -q "SHOW CREATE TABLE ${table} FORMAT RawBLOB" \
-      > "$table.sql"
+    cc -d "$DATABASE" -q "SHOW CREATE TABLE $table FORMAT RawBLOB" | \
+      sed "s/^CREATE TABLE $DATABASE./CREATE TABLE /" > "$table.sql"
     echo ";" >> "$table.sql"
-    perl -pi -e "s/CREATE TABLE ${DATABASE}./CREATE TABLE /" $table.sql
-    cc -d "$DATABASE" -q "SELECT * FROM ${table} FORMAT TSV" \
+    cc -d "$DATABASE" -q "SELECT * FROM $table FORMAT TSV" \
       > "$table.tsv"
   done
 
